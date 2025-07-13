@@ -2,7 +2,9 @@ package io.papermc.paper.plugin.manager;
 
 import com.google.common.collect.ImmutableSet;
 import io.papermc.paper.plugin.PermissionManager;
+import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permissible;
+import org.bukkit.permissions.PermissibleBase;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 import org.jetbrains.annotations.NotNull;
@@ -185,6 +187,11 @@ abstract class PaperPermissionManager implements PermissionManager {
         this.defaultPerms().get(false).clear();
     }
 
+    @Override
+    @NotNull
+    public PermissibleBase createPlayerPermissibleBase(@NotNull Player player) {
+        return new PermissibleBase(player);
+    }
 
     void dirtyPermissibles(boolean op) {
         Set<Permissible> permissibles = this.getDefaultPermSubscriptions(op);

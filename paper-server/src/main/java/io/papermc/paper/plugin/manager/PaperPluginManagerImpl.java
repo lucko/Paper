@@ -8,10 +8,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.CommandMap;
 import org.bukkit.craftbukkit.CraftServer;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.permissions.Permissible;
+import org.bukkit.permissions.PermissibleBase;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.InvalidDescriptionException;
@@ -221,6 +223,11 @@ public class PaperPluginManagerImpl implements PluginManager, DependencyContext 
     @Override
     public void clearPermissions() {
         this.permissionManager.clearPermissions();
+    }
+
+    @Override
+    public @NotNull PermissibleBase createPlayerPermissibleBase(@NotNull Player player) {
+        return this.permissionManager.createPlayerPermissibleBase(player);
     }
 
     @Override

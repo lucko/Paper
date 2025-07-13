@@ -2,9 +2,12 @@ package io.papermc.paper.plugin;
 
 import java.util.List;
 import java.util.Set;
+import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permissible;
+import org.bukkit.permissions.PermissibleBase;
 import org.bukkit.permissions.Permission;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
@@ -162,5 +165,14 @@ public interface PermissionManager {
      * This is used for reloading.
      */
     void clearPermissions();
+
+    /**
+     * Creates a new {@link PermissibleBase} for a player entity.
+     *
+     * @param player player to create the PermissibleBase for
+     * @return a PermissibleBase for the player
+     */
+    @ApiStatus.Internal
+    PermissibleBase createPlayerPermissibleBase(Player player);
 
 }

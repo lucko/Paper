@@ -89,7 +89,7 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
     private static final Logger LOGGER = LogUtils.getLogger();
     private CraftInventoryPlayer inventory;
     private final CraftInventory enderChest;
-    protected final PermissibleBase perm = new PermissibleBase(this);
+    protected final PermissibleBase perm;
     private boolean op;
     private GameMode mode;
 
@@ -98,6 +98,9 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
         this.mode = server.getDefaultGameMode();
         this.inventory = new CraftInventoryPlayer(entity.getInventory());
         this.enderChest = new CraftInventory(entity.getEnderChestInventory());
+        this.perm = this instanceof org.bukkit.entity.Player player
+            ? server.getPluginManager().createPlayerPermissibleBase(player)
+            : new PermissibleBase(this);
     }
 
     @Override

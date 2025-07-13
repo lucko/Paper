@@ -30,11 +30,13 @@ import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.PluginCommandYamlParser;
 import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.permissions.Permissible;
+import org.bukkit.permissions.PermissibleBase;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.util.FileUtil;
@@ -975,6 +977,11 @@ public final class SimplePluginManager implements PluginManager {
         permissions.clear();
         defaultPerms.get(true).clear();
         defaultPerms.get(false).clear();
+    }
+
+    @Override
+    public @NotNull PermissibleBase createPlayerPermissibleBase(@NotNull Player player) {
+        return this.paperPluginManager.createPlayerPermissibleBase(player);
     }
 
     @Override
